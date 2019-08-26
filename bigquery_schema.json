@@ -1,0 +1,188 @@
+[
+  {
+    "name": "landrecid",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Universally unique ID (UUID) assigned to each parcel assigned by the Land Record database."
+  },
+  {
+    "name": "parcelid",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Parcel id assigned by the local administrative authority. AKA parcel number, APN, and PIN. The format will vary."
+  },
+  {
+    "name": "geoid",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "The full FIPS code of the jurisdiction in which the parcel resides (state fips + county fips)."
+  },
+  {
+    "name": "statefp",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "State FIPS code"
+  },
+  {
+    "name": "countyfp",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "County FIPS code"
+  },
+  {
+    "name": "acctnum",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The local tax account number associated with this parcel"
+  },
+  {
+    "name": "usecode",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Land use code. These will vary across jurisdiction. These will vary in format between locales."
+  },
+  {
+    "name": "usedesc",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Description of the land use associated with this parcel"
+  },
+  {
+    "name": "zoningcode",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Zoning code associated with this parcel. These will vary in format."
+  },
+  {
+    "name": "zoningdesc",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Zoning description associated with this parcel. These will vary in format and length."
+  },
+  {
+    "name": "numbldgs",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Number of buildings located on the parcel. This includes primary residence as well as any accessory dwellings, garages, sheds, etc."
+  },
+  {
+    "name": "yearbuilt",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "The recorded year that the primary building was constructed"
+  },
+  {
+    "name": "numfloors",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Number of stories/floors/levels in the primary building according to the local authorities"
+  },
+  {
+    "name": "bldgsqft",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Assessed area in square feet of the primary building"
+  },
+  {
+    "name": "imprvalue",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Assessed value of improvements; typically this is the value of any and all buildings located on the parcel"
+  },
+  {
+    "name": "landvalue",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Assessed value of the surface land only. Does not include value of buildings, agriculture, or subsurface minerals or water"
+  },
+  {
+    "name": "agvalue",
+    "type": "IN64",
+    "mode": "NULLABLE",
+    "description": "Assessed value of any agricutlure or agriculture rights"
+  },
+  {
+    "name": "totalvalue",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Total assessed value, i.e. landvalue + imprvalue + agvalue"
+  },
+  {
+    "name": "saleamt",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Transaction amount of the most recent recorded sale that this parcel was a part of. Usually the parcel comprises the entire sale, but occasionally the sale amount can include other parcels."
+  },
+  {
+    "name": "ownertype",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Type of owner; e.g. individual, business, government"
+  },
+  {
+    "name": "ownername",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Name of the recorded owner"
+  },
+  {
+    "name": "owneraddr",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Mailing address of the recorded owner, if known"
+  },
+  {
+    "name": "parceladdr",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Mailing address of the parcel"
+  },
+  {
+    "name": "legaldesc",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Legal description of the parcel; this is usually described in terms of lot numbers, plat numbers, book numbers, etc."
+  },
+  {
+    "name": "srclevel",
+    "type": "INT64",
+    "mode": "REQUIRED",
+    "description": "Level of detail from which the parcel data was acquired. 1=county, 2=state, 3+ are from nongovernment overlay sources, or an aggregation of multiple sources to form a complete record."
+  },
+  {
+    "name": "srcupdate",
+    "type": "DATE",
+    "mode": "REQUIRED",
+    "description": "Date of last known update of the source data. If not specified or unknown, this field represents the date of most recent acquisition of source data"
+  },
+  {
+    "name": "centroidx",
+    "type": "GEOGRAPHY",
+    "mode": "NUMERIC",
+    "description": "x-coordinate (longitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel"
+  },
+  {
+    "name": "centroidy",
+    "type": "NUMERIC",
+    "mode": "REQUIRED",
+    "description": "y-coordinate (latitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel"
+  },
+  {
+    "name": "surfpointx",
+    "type": "NUMERIC",
+    "mode": "REQUIRED",
+    "description": "x-coordinate (longitude) of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface"
+  },
+  {
+    "name": "surfpointy",
+    "type": "NUMERIC",
+    "mode": "REQUIRED",
+    "description": "y-coordinate of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface"
+  },
+  {
+    "name": "geom",
+    "type": "GEOGRAPHY",
+    "mode": "REQUIRED",
+    "description": "MULTIPOLYGON of the parcel lot lines in EPSG 4326"
+  }
+]
