@@ -3,11 +3,11 @@ from mdutils.mdutils import MdUtils
 
 schema = json.load(open('bigquery_schema.json'))
 
-md = MdUtils(file_name='README.md', title='Parcel Standard Schema v1.0.0')
+md = MdUtils(file_name='README.md', title='Parcel Standard Schema v1.0.1')
 
 md.new_paragraph(
     'This repository contains tools and documents to help you get the most of '
-    'your [Land Record](http://www.landrecord.us) parcel dataset.')
+    'your [Land Record](http://www.landrecords.us) parcel dataset.')
 
 md.new_header(level=1, title='Technical Notes')
 md.new_paragraph(

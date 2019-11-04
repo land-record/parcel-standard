@@ -9,7 +9,13 @@
     "name": "parcelid",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Parcel id assigned by the local administrative authority. AKA parcel number, APN, and PIN. The format will vary."
+    "description": "Parcel id assigned by the local administrative authority. AKA parcel number, APN, AIN, PID, and PIN. The format will vary."
+  },
+  {
+    "name": "parcelid2",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Alternate parcel id assigned by the local or state administrative authority."
   },
   {
     "name": "geoid",
@@ -21,31 +27,43 @@
     "name": "statefp",
     "type": "STRING",
     "mode": "REQUIRED",
-    "description": "State FIPS code"
+    "description": "State FIPS code."
   },
   {
     "name": "countyfp",
     "type": "STRING",
     "mode": "REQUIRED",
-    "description": "County FIPS code"
+    "description": "County FIPS code."
+  },
+  {
+    "name": "parceltype",
+    "type": "STRING",
+    "mode": "REQUIRED",
+    "description": "Parcel type identifier or description."
   },
   {
     "name": "acctnum",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "The local tax account number associated with this parcel"
+    "description": "The local tax account number associated with this parcel."
+  },
+  {
+    "name": "taxyear",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "The tax year for which the provided assessments are levied."
   },
   {
     "name": "usecode",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Land use code. These will vary across jurisdiction. These will vary in format between locales."
+    "description": "Land use code."
   },
   {
     "name": "usedesc",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Description of the land use associated with this parcel"
+    "description": "Description of the land use associated with this parcel."
   },
   {
     "name": "zoningcode",
@@ -66,46 +84,64 @@
     "description": "Number of buildings located on the parcel. This includes primary residence as well as any accessory dwellings, garages, sheds, etc."
   },
   {
+    "name": "numunits",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Number of living units located on the parcel."
+  },
+  {
     "name": "yearbuilt",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "The recorded year that the primary building was constructed"
+    "description": "The recorded year that the primary building was constructed."
   },
   {
     "name": "numfloors",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Number of stories/floors/levels in the primary building according to the local authorities"
+    "description": "Number of stories/floors/levels in the primary building according to the local authorities."
   },
   {
     "name": "bldgsqft",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Assessed area in square feet of the primary building"
+    "description": "Assessed area in square feet of the primary building."
+  },
+  {
+    "name": "bedrooms",
+    "type": "INT64",
+    "mode": "NULLABLE",
+    "description": "Number of known and assessed bedrooms in the main building."
+  },
+  {
+    "name": "baths",
+    "type": "NUMERIC",
+    "mode": "NULLABLE",
+    "description": "Number of known and assessed bathrooms in the main building."
   },
   {
     "name": "imprvalue",
     "type": "INT64",
     "mode": "NULLABLE",
-    "description": "Assessed value of improvements; typically this is the value of any and all buildings located on the parcel"
+    "description": "Assessed value of improvements; typically this is the value of any and all buildings located on the parcel."
   },
   {
     "name": "landvalue",
     "type": "INT64",
     "mode": "NULLABLE",
-    "description": "Assessed value of the surface land only. Does not include value of buildings, agriculture, or subsurface minerals or water"
+    "description": "Assessed value of the surface land only. Does not include value of buildings, agriculture, or subsurface minerals or water."
   },
   {
     "name": "agvalue",
-    "type": "IN64",
+    "type": "INT64",
     "mode": "NULLABLE",
-    "description": "Assessed value of any agricutlure or agriculture rights"
+    "description": "Assessed value of any agricutlure or agriculture rights."
   },
   {
     "name": "totalvalue",
     "type": "INT64",
     "mode": "NULLABLE",
-    "description": "Total assessed value, i.e. landvalue + imprvalue + agvalue"
+    "description": "Total assessed value, i.e. landvalue + imprvalue + agvalue."
   },
   {
     "name": "saleamt",
@@ -114,34 +150,94 @@
     "description": "Transaction amount of the most recent recorded sale that this parcel was a part of. Usually the parcel comprises the entire sale, but occasionally the sale amount can include other parcels."
   },
   {
+    "name": "saledate",
+    "type": "DATE",
+    "mode": "NULLABLE",
+    "description": "Transaction date of the most recent recorded sale that this parcel was a part of."
+  },
+  {
     "name": "ownertype",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Type of owner; e.g. individual, business, government"
+    "description": "Type of owner; e.g. individual, business, government."
   },
   {
     "name": "ownername",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Name of the recorded owner"
+    "description": "Name of the recorded owner."
   },
   {
     "name": "owneraddr",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Mailing address of the recorded owner, if known"
+    "description": "Mailing address of the recorded owner, if known."
   },
   {
     "name": "parceladdr",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Mailing address of the parcel"
+    "description": "Mailing address of the parcel."
   },
   {
     "name": "legaldesc",
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "Legal description of the parcel; this is usually described in terms of lot numbers, plat numbers, book numbers, etc."
+  },
+  {
+    "name": "juris",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Jurisdiction of levy."
+  },
+  {
+    "name": "township",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Public Land Survey System (PLSS) township identifier."
+  },
+  {
+    "name": "section",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Public Land Survey System (PLSS) section identifier."
+  },
+  {
+    "name": "qtrsection",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Public Land Survey System (PLSS) quarter-section identifier."
+  },
+  {
+    "name": "range",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Public Land Survey System (PLSS) range identifier."
+  },
+  {
+    "name": "plssdesc",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Public Land Survey System (PLSS) full description."
+  },
+  {
+    "name": "platbook",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Plat book number or name."
+  },
+  {
+    "name": "platpage",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Plat book page number or name."
+  },
+  {
+    "name": "platblock",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Plat block identifier."
   },
   {
     "name": "srclevel",
@@ -153,36 +249,36 @@
     "name": "srcupdate",
     "type": "DATE",
     "mode": "REQUIRED",
-    "description": "Date of last known update of the source data. If not specified or unknown, this field represents the date of most recent acquisition of source data"
+    "description": "Date of last known update of the source data. If not specified or unknown, this field represents the date of most recent acquisition of source data."
   },
   {
     "name": "centroidx",
-    "type": "GEOGRAPHY",
-    "mode": "NUMERIC",
-    "description": "x-coordinate (longitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel"
+    "type": "NUMERIC",
+    "mode": "REQUIRED",
+    "description": "x-coordinate (longitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel."
   },
   {
     "name": "centroidy",
     "type": "NUMERIC",
     "mode": "REQUIRED",
-    "description": "y-coordinate (latitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel"
+    "description": "y-coordinate (latitude) of geographic center POINT of the parcel in EPSG 4326. In rare cases the center may lie outside the parcel shape itself in the case of a 'C'shaped parcel."
   },
   {
     "name": "surfpointx",
     "type": "NUMERIC",
     "mode": "REQUIRED",
-    "description": "x-coordinate (longitude) of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface"
+    "description": "x-coordinate (longitude) of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface."
   },
   {
     "name": "surfpointy",
     "type": "NUMERIC",
     "mode": "REQUIRED",
-    "description": "y-coordinate of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface"
+    "description": "y-coordinate of centermost POINT that is guaranteed to lie within the parcel's surface in EPSG 4326. This point will never lie outside the parcel. Calculated using ST_PointOnSurface."
   },
   {
     "name": "geom",
     "type": "GEOGRAPHY",
     "mode": "REQUIRED",
-    "description": "MULTIPOLYGON of the parcel lot lines in EPSG 4326"
+    "description": "MULTIPOLYGON of the parcel lot lines in EPSG 4326."
   }
 ]

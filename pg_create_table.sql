@@ -1,47 +1,65 @@
-create table if not exists landrecord_parcel (
-  landrecid uuid primary key,
+create table if not exists lr_parcel (
+    landrecid uuid primary key,
 
-  parcelid text,
-  geoid text,
+    parcelid text,
+    parcelid2 text,
 
-  statefp text,
-  countyfp text,
+    geoid text,
+    statefp text,
+    countyfp text,
 
-  acctnum text,
+    parceltype text,
+    acctnum text,
+    taxyear int,
 
-  usecode text,
-  usedesc text,
-  zoningcode text,
+    usecode text,
+    usedesc text,
+    zoningcode text,
+    zoningdesc text
 
-  numbldgs int,
-  yearbuilt int,
-  numfloors int,
-  bldgsqft int,
+    numbldgs int,
+    numunits int,
+    yearbuilt int,
+    numfloors int,
+    bldgsqft int,
+    bedrooms int,
+    baths int,
 
-  imprvalue int,
-  landvalue int,
-  agvalue int,
-  totalvalue int,
-  saleamt int,
+    imprvalue int,
+    landvalue int,
+    agvalue int,
+    totalvalue int,
 
-  ownertype text,
-  ownername text,
-  owneraddr text,
+    saleamt int,
+    saledate date,
 
-  parceladdr text,
-  legaldesc text,
+    ownertype text,
+    ownername text,
+    owneraddr text,
 
-  srclevel int,
-  srcupdate date,
+    parceladdr text,
+    legaldesc text,
+    juris text,
+    township text,
+    sectino text,
+    qtrsection text,
+    range text,
+    plssdesc text,
 
-  centroidx float,
-  centroidy float,
-  surfpointx float,
-  surfpointy float,
+    platbook text,
+    platpage text,
+    platblock text,
 
-  geom geometry(MultiPolygon, 4326)
+    srclevel int,
+    srcupdate date,
+
+    centroidx float,
+    centroidy float,
+    surfpointx float,
+    surfpointy float,
+
+    geom geometry(MultiPolygon, 4326)
 );
 
-create index idx_parcel_centroid on landrecord_parcel using gist(centroid);
-create index idx_parcel_pt on landrecord_parcel using gist(surfpoint);
 create index idx_parcel_geom on landrecord_parcel using gist(geom);
+create index idx_geoid on landrecord_parcel (geoid);
