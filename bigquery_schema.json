@@ -8,20 +8,20 @@
   {
     "name": "parcelid",
     "type": "STRING",
-    "mode": "NULLABLE",
+    "mode": "REQUIRED",
     "description": "Parcel id assigned by the local administrative authority. AKA parcel number, APN, AIN, PID, and PIN. The format will vary."
   },
   {
     "name": "parcelid2",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "Alternate parcel id assigned by the local or state administrative authority."
+    "description": "Alternate parcel id assigned by the local or state administrative authority. May be the same as parcelid if no alternate given."
   },
   {
     "name": "geoid",
     "type": "STRING",
     "mode": "REQUIRED",
-    "description": "The full FIPS code of the jurisdiction in which the parcel resides (state fips + county fips)."
+    "description": "The full combined FIPS code of the jurisdiction in which the parcel resides (state fips + county fips)."
   },
   {
     "name": "statefp",
@@ -38,20 +38,20 @@
   {
     "name": "parceltype",
     "type": "STRING",
-    "mode": "REQUIRED",
+    "mode": "NULLABLE",
     "description": "Parcel type identifier or description."
   },
   {
     "name": "acctnum",
     "type": "STRING",
     "mode": "NULLABLE",
-    "description": "The local tax account number associated with this parcel."
+    "description": "The assigned tax account number associated with this parcel / owner."
   },
   {
     "name": "taxyear",
     "type": "INT64",
     "mode": "NULLABLE",
-    "description": "The tax year for which the provided assessments are levied."
+    "description": "The year for which the provided tax assessments are levied."
   },
   {
     "name": "usecode",
@@ -115,7 +115,7 @@
   },
   {
     "name": "baths",
-    "type": "NUMERIC",
+    "type": "STRING",
     "mode": "NULLABLE",
     "description": "Number of known and assessed bathrooms in the main building."
   },
@@ -156,12 +156,6 @@
     "description": "Transaction date of the most recent recorded sale that this parcel was a part of."
   },
   {
-    "name": "ownertype",
-    "type": "STRING",
-    "mode": "NULLABLE",
-    "description": "Type of owner; e.g. individual, business, government."
-  },
-  {
     "name": "ownername",
     "type": "STRING",
     "mode": "NULLABLE",
@@ -184,12 +178,6 @@
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "Legal description of the parcel; this is usually described in terms of lot numbers, plat numbers, book numbers, etc."
-  },
-  {
-    "name": "juris",
-    "type": "STRING",
-    "mode": "NULLABLE",
-    "description": "Jurisdiction of levy."
   },
   {
     "name": "township",
@@ -222,34 +210,40 @@
     "description": "Public Land Survey System (PLSS) full description."
   },
   {
-    "name": "platbook",
+    "name": "plat",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Plat number or identifier"
+  },
+  {
+    "name": "book",
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "Plat book number or name."
   },
   {
-    "name": "platpage",
+    "name": "page",
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "Plat book page number or name."
   },
   {
-    "name": "platblock",
+    "name": "block",
     "type": "STRING",
     "mode": "NULLABLE",
     "description": "Plat block identifier."
   },
   {
-    "name": "srclevel",
-    "type": "INT64",
-    "mode": "REQUIRED",
-    "description": "Level of detail from which the parcel data was acquired. 1=county, 2=state, 3+ are from nongovernment overlay sources, or an aggregation of multiple sources to form a complete record."
+    "name": "lot",
+    "type": "STRING",
+    "mode": "NULLABLE",
+    "description": "Plat lot identifier."
   },
   {
-    "name": "srcupdate",
+    "name": "updated",
     "type": "DATE",
     "mode": "REQUIRED",
-    "description": "Date of last known update of the source data. If not specified or unknown, this field represents the date of most recent acquisition of source data."
+    "description": "Date of last known update of the source data. If not specified by the source provider or if it is unknown, this field represents the date of most recent acquisition of source data."
   },
   {
     "name": "centroidx",
@@ -279,6 +273,12 @@
     "name": "geom",
     "type": "GEOGRAPHY",
     "mode": "REQUIRED",
-    "description": "MULTIPOLYGON of the parcel lot lines in EPSG 4326."
+    "description": "MULTIPOLYGON of the parcel lot line boundary in EPSG 4326."
+  },
+  {
+    "name": "unmapped",
+    "type": "JSON",
+    "mode": "NULLABLE",
+    "description": "A JSON object containing any remaining unmapped fields from the source data. This object is optional and may not be included for all sources, counties, or export formats."
   }
 ]

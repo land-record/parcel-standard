@@ -15,7 +15,7 @@ create table if not exists lr_parcel (
     usecode text,
     usedesc text,
     zoningcode text,
-    zoningdesc text
+    zoningdesc text,
 
     numbldgs int,
     numunits int,
@@ -23,42 +23,43 @@ create table if not exists lr_parcel (
     numfloors int,
     bldgsqft int,
     bedrooms int,
-    baths int,
+    baths text,
 
-    imprvalue int,
-    landvalue int,
-    agvalue int,
-    totalvalue int,
+    imprvalue bigint,
+    landvalue bigint,
+    agvalue bigint,
+    totalvalue bigint,
 
-    saleamt int,
+    saleamt bigint,
     saledate date,
 
-    ownertype text,
     ownername text,
     owneraddr text,
 
     parceladdr text,
     legaldesc text,
-    juris text,
     township text,
-    sectino text,
+    section text,
     qtrsection text,
     range text,
     plssdesc text,
 
-    platbook text,
-    platpage text,
-    platblock text,
+    plat text,
+    book text,
+    page text,
+    block text,
+    lot text,
 
-    srclevel int,
-    srcupdate date,
+    updated date,
 
     centroidx float,
     centroidy float,
     surfpointx float,
     surfpointy float,
 
-    geom geometry(MultiPolygon, 4326)
+    geom geometry(MultiPolygon, 4326),
+
+    unmapped jsonb
 );
 
 create index idx_parcel_geom on landrecord_parcel using gist(geom);
