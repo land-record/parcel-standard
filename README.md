@@ -28,7 +28,7 @@ An individual county or state can easily be stored and analyzed in a traditional
 |bldgsqft|STRING|NULLABLE|Assessed area in square feet of the primary building|
 |imprvalue|INT64|NULLABLE|Assessed value of improvements; typically this is the value of any and all buildings located on the parcel|
 |landvalue|INT64|NULLABLE|Assessed value of the surface land only. Does not include value of buildings, agriculture, or subsurface minerals or water|
-|agvalue|IN64|NULLABLE|Assessed value of any agricutlure or agriculture rights|
+|agvalue|INT64|NULLABLE|Assessed value of any agricutlure or agriculture rights|
 |totalvalue|INT64|NULLABLE|Total assessed value, i.e. landvalue + imprvalue + agvalue|
 |saleamt|INT64|NULLABLE|Transaction amount of the most recent recorded sale that this parcel was a part of. Usually the parcel comprises the entire sale, but occasionally the sale amount can include other parcels.|
 |ownertype|STRING|NULLABLE|Type of owner; e.g. individual, business, government|

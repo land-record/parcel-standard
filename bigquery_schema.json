@@ -97,7 +97,7 @@
   },
   {
     "name": "agvalue",
-    "type": "IN64",
+    "type": "INT64",
     "mode": "NULLABLE",
     "description": "Assessed value of any agricutlure or agriculture rights"
   },
